@@ -5,12 +5,16 @@ export const StyledProductCard = styled.div`
   height: fit-content;
   background-color: rgb(255, 255, 255);
   width: 22rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 60px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  transition: box-shadow 0.3s ease-in-out;
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 60px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
 `;
 
 export const StyledProductImage = styled.img`
@@ -48,4 +52,13 @@ export const StyledBuyNowButton = styled.button`
   background-color: rgb(82, 86, 98);
   color: white;
   border: 0;
+
+  &:hover {
+    background-color: rgb(63, 65, 73);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: rgb(41, 43, 48);
+  }
 `;

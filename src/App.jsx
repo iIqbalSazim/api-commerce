@@ -1,13 +1,14 @@
 import { StyledMain } from "./AppStyles";
+
 import NavBar from "./Shared/Components/NavBar/NavBar";
-import DisplayProducts from "./Pages/DisplayProducts/DisplayProducts";
+import ProductsPageRoutes from "./Shared/Routes/ProductsPageRoutes";
 
 function App() {
   return (
     <>
       <StyledMain>
         <NavBar />
-        <DisplayProducts />
+        <ProductsPageRoutes />
       </StyledMain>
     </>
   );

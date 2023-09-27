@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   width: 100%;
@@ -7,6 +8,18 @@ export const StyledNav = styled.nav`
   justify-content: space-around;
   background-color: black;
   color: white;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 export const StyledTitleWrapper = styled.section`
@@ -20,6 +33,7 @@ export const StyledTitle = styled.h1`
   font-weight: 600;
   font-size: 1.5rem;
   padding: 0.3rem;
+  text-decoration: none;
 `;
 
 export const StyledNavSection = styled.section`

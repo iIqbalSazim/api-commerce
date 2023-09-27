@@ -1,4 +1,5 @@
 import {
+  StyledLink,
   StyledNav,
   StyledNavSection,
   StyledTitle,
@@ -10,10 +11,12 @@ const NavBar = () => {
     <>
       <StyledNav>
         <StyledTitleWrapper>
-          <StyledTitle>API COMMERCE</StyledTitle>
+          <StyledLink to="/">
+            <StyledTitle>API COMMERCE</StyledTitle>
+          </StyledLink>
         </StyledTitleWrapper>
         <StyledNavSection>
-          <div>Home</div>
+          <StyledLink to="/">Home</StyledLink>
           <div>About</div>
         </StyledNavSection>
       </StyledNav>

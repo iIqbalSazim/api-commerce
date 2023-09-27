@@ -7,22 +7,10 @@ import {
   StyledProductImage,
   StyledProductTitle,
 } from "./ProductsGridStyles";
-import { useEffect, useState } from "react";
-import { fetchAllProducts } from "../../Api/Methods";
+import { useNavigate } from "react-router-dom";
 
-const ProductsGrid = () => {
-  const [products, setProducts] = useState([]);
-
-  const getData = async () => {
-    let res = await fetchAllProducts();
-    if (res) {
-      setProducts(res.data.products);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+const ProductsGrid = ({ products }) => {
+  const navigate = useNavigate();
 
   if (!products || products.length === 0) {
     return <div>...loading placeholder</div>;
@@ -39,7 +27,9 @@ const ProductsGrid = () => {
               </StyledProductDetailsWrapper>
               <StyledProductBuyNowWrapper>
                 <StyledPrice>$ {product.price}</StyledPrice>
-                <StyledBuyNowButton>Buy now</StyledBuyNowButton>
+                <StyledBuyNowButton onClick={() => navigate(`/${product.id}`)}>
+                  Buy now
+                </StyledBuyNowButton>
               </StyledProductBuyNowWrapper>
             </StyledProductCard>
           );
@@ -48,5 +38,4 @@ const ProductsGrid = () => {
     );
   }
 };
-
 export default ProductsGrid;
