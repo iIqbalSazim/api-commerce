@@ -26,7 +26,7 @@ export const StyledTitleWrapper = styled.section`
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 80rem;
+  width: 50rem;
 `;
 
 export const StyledTitle = styled.h1`

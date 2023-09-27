@@ -23,7 +23,14 @@ const ProductsGrid = ({ products }) => {
         {products.map((product) => {
           return (
             <StyledProductCard key={product.id}>
-              <StyledProductImage src={product.images[0]} alt="" />
+              <StyledProductImage
+                src={
+                  product.images
+                    ? product.thumbnail
+                    : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"
+                }
+                alt=""
+              />
               <StyledProductDetailsWrapper>
                 <StyledProductTitle>{product.title}</StyledProductTitle>
                 <p>{product.description}</p>
@@ -41,4 +48,5 @@ const ProductsGrid = ({ products }) => {
     );
   }
 };
+
 export default ProductsGrid;

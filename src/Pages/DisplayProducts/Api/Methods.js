@@ -1,9 +1,17 @@
-import { getRequest } from "../../../Config/Axios/AxiosConfig";
+import { getRequest, postRequest } from "../../../Config/Axios/AxiosConfig";
 
 export const fetchAllProducts = async () => {
   return await getRequest("products");
 };
 
+export const fetchAllCateogories = async () => {
+  return await getRequest("products/categories");
+};
+
 export const fetchProduct = async (id) => {
   return await getRequest(`product/${id}`);
+};
+
+export const addProduct = async (data) => {
+  return await postRequest("products/add", data);
 };
