@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import AddProduct from "./Components/AddProduct/AddProduct";
 import ProductCard from "./Components/ProductCard/ProductCard";
 
-import {
-  fetchAllCateogories,
-  fetchAllProducts,
-} from "../DisplayProducts/Api/Methods";
-import { StyledGridWrapper } from "./DisplayProductsStyles";
+import { fetchAllCateogories, fetchAllProducts } from "./Api/Methods";
 
-const DisplayProducts = () => {
+import { StyledGridWrapper } from "./ProductsContainerStyles";
+import Loader from "../../Shared/Components/Loader/Loader";
+
+const ProductsContainer = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -34,8 +33,13 @@ const DisplayProducts = () => {
   };
 
   const getCategoriesData = async () => {
-    let res = await fetchAllCateogories();
-    setCategories(res.data);
+    if (JSON.parse(localStorage.getItem("categories"))) {
+      setCategories(JSON.parse(localStorage.getItem("categories")));
+    } else {
+      let res = await fetchAllCateogories();
+      localStorage.setItem("categories", JSON.stringify(res.data));
+      setCategories(res.data);
+    }
   };
 
   const setNewProduct = (newProduct) => {
@@ -66,19 +70,31 @@ const DisplayProducts = () => {
     localStorage.setItem("products", JSON.stringify(updatedProducts));
   };
 
-  return (
-    <>
-      <AddProduct setNewProduct={setNewProduct} categories={categories} />
-      <StyledGridWrapper>
-        <ProductCard
-          products={products}
-          updateEditedProduct={updateEditedProduct}
-          deleteProduct={deleteProduct}
-          categories={categories}
-        />
-      </StyledGridWrapper>
-    </>
-  );
+  if (!products || products.length === 0) {
+    return <Loader />;
+  } else {
+    let filteredProducts = products.filter(
+      (product) => product.isDeleted !== true
+    );
+    return (
+      <>
+        <AddProduct setNewProduct={setNewProduct} categories={categories} />
+        <StyledGridWrapper>
+          {filteredProducts.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                updateEditedProduct={updateEditedProduct}
+                deleteProduct={deleteProduct}
+                categories={categories}
+              />
+            );
+          })}
+        </StyledGridWrapper>
+      </>
+    );
+  }
 };
 
-export default DisplayProducts;
+export default ProductsContainer;

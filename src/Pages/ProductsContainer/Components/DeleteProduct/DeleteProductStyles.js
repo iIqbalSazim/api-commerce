@@ -2,21 +2,25 @@ import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 
 import {
-  StyledFormModal,
-  StyledFormModalOverlay,
-} from "../AddProduct/AddProductStyles";
+  StyledModal,
+  StyledModalOverlay,
+} from "../../../../Shared/Components/Modal/ModalStyles";
 
-export const StyledConfirmDeleteModalOverlay = styled(StyledFormModalOverlay)`
+export const StyledConfirmDeleteModalOverlay = styled(StyledModalOverlay)`
   background-color: rgba(0, 0, 0, 0.573);
 `;
 
-export const StyledConfirmDeleteModal = styled(StyledFormModal)`
+export const StyledConfirmDeleteModal = styled(StyledModal)`
   max-height: 20rem;
-  max-width: 25rem;
-  height: 16rem;
+  height: 14rem;
+  max-width: 18rem;
   margin-top: 10rem;
   flex-direction: column;
   padding: 2rem;
+  @media screen and (min-width: 510px) {
+    height: 16rem;
+    max-width: 25rem;
+  }
 `;
 
 export const StyledCloseCrossIcon = styled(AiOutlineClose)`
@@ -33,10 +37,13 @@ export const StyledCloseCrossIcon = styled(AiOutlineClose)`
 `;
 
 export const StyledTitle = styled.h1`
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-family: inherit;
   flex-grow: 1;
   margin-right: 0.5rem;
+  @media screen and (min-width: 510px) {
+    font-size: 1.4rem;
+  }
 `;
 
 export const StyledButtonsWrapper = styled.div`
@@ -61,6 +68,11 @@ export const StyledButton = styled.button`
   }
   &:active {
     background-color: rgb(168, 61, 61);
+  }
+  font-size: 0.7rem;
+
+  @media screen and (min-width: 510px) {
+    font-size: 0.8rem;
   }
 `;
 

@@ -32,6 +32,7 @@ const DeleteProduct = ({ product, closeConfirmDeleteModal, deleteProduct }) => {
     alert("Product deleted!");
     closeConfirmDeleteModal(product.id);
   };
+
   return (
     <StyledConfirmDeleteModalOverlay>
       <StyledConfirmDeleteModal>

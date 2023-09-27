@@ -4,7 +4,7 @@ export const StyledProductCard = styled.div`
   min-height: 32rem;
   height: fit-content;
   background-color: rgb(255, 255, 255);
-  width: 16rem;
+  width: 15.7rem;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,18 @@ export const StyledProductCard = styled.div`
       rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
   position: relative;
+
+  @media screen and (min-width: 800px) {
+    width: 14.5rem;
+  }
+
+  @media screen and (min-width: 1100px) {
+    width: 15rem;
+  }
+
+  @media screen and (min-width: 1250px) {
+    width: 16rem;
+  }
 `;
 
 export const StyledDotsButton = styled.button`
@@ -71,24 +83,25 @@ export const StyledProductDetailsWrapper = styled.section`
   padding: 0.1rem 1.3rem;
   flex-grow: 1;
   max-width: 16rem;
+  word-wrap: break-word;
 `;
 
 export const StyledProductTitle = styled.p`
   font-weight: 600;
   padding-top: 1rem;
   font-size: 1.1rem;
-  word-wrap: break-word;
 `;
 
 export const StyledProductBuyNowWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const StyledPrice = styled.h3`
   font-weight: 500;
+  font-size: 1rem;
 `;
 
 export const StyledBuyNowButton = styled.button`
