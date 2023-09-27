@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
+import Loader from "../../../../Shared/Components/Loader/Loader";
+
 import {
   StyledBuyNowButton,
   StyledPrice,
@@ -7,13 +11,12 @@ import {
   StyledProductImage,
   StyledProductTitle,
 } from "./ProductsGridStyles";
-import { useNavigate } from "react-router-dom";
 
 const ProductsGrid = ({ products }) => {
   const navigate = useNavigate();
 
   if (!products || products.length === 0) {
-    return <div>...loading placeholder</div>;
+    return <Loader />;
   } else {
     return (
       <>

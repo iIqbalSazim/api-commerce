@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AiOutlineStar } from "react-icons/ai";
+
+import Loader from "../../../../Shared/Components/Loader/Loader";
+
 import {
   StyledProductCategory,
   StyledProductDescription,
@@ -11,7 +15,6 @@ import {
   StyledProductSection,
   StyledProductStats,
 } from "./ProductPageStyles";
-import { AiOutlineStar } from "react-icons/ai";
 
 import { fetchProduct } from "../../Api/Methods";
 
@@ -28,32 +31,32 @@ const ProductPage = () => {
     getData();
   }, []);
 
-  if (product.length === 0) {
-    return <div>...Loading placeholder</div>;
-  }
-
   return (
     <>
       <StyledProductPageSection>
-        <StyledProductSection>
-          <StyledProductPageImage src={product.images[0]} alt="" />
-          <StyledProductPageProductDetails>
-            <StyledProductPageTitle>{product.title}</StyledProductPageTitle>
-            <StyledProductCategory>
-              Category: {product.category.toUpperCase()}
-            </StyledProductCategory>
-            <StyledProductDescription>
-              {product.description}
-            </StyledProductDescription>
-            <StyledProductStats>
-              <p>Price: ${product.price}</p>
-              <StyledProductRating>
-                Rating: {product.rating}
-                <AiOutlineStar />
-              </StyledProductRating>
-            </StyledProductStats>
-          </StyledProductPageProductDetails>
-        </StyledProductSection>
+        {product.length === 0 ? (
+          <Loader />
+        ) : (
+          <StyledProductSection>
+            <StyledProductPageImage src={product.images[0]} alt="" />
+            <StyledProductPageProductDetails>
+              <StyledProductPageTitle>{product.title}</StyledProductPageTitle>
+              <StyledProductCategory>
+                Category: {product.category.toUpperCase()}
+              </StyledProductCategory>
+              <StyledProductDescription>
+                {product.description}
+              </StyledProductDescription>
+              <StyledProductStats>
+                <p>Price: ${product.price}</p>
+                <StyledProductRating>
+                  Rating: {product.rating}
+                  <AiOutlineStar />
+                </StyledProductRating>
+              </StyledProductStats>
+            </StyledProductPageProductDetails>
+          </StyledProductSection>
+        )}
       </StyledProductPageSection>
     </>
   );
