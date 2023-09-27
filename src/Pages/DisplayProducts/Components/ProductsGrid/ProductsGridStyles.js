@@ -4,7 +4,7 @@ export const StyledProductCard = styled.div`
   min-height: 32rem;
   height: fit-content;
   background-color: rgb(255, 255, 255);
-  width: 22rem;
+  width: 16rem;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -19,10 +19,9 @@ export const StyledProductCard = styled.div`
 
 export const StyledProductImage = styled.img`
   height: 15rem;
-  width: inherit;
+  padding: 1rem;
   object-fit: scale-down;
   border-radius: inherit;
-  margin: 0.5rem 0;
 `;
 
 export const StyledProductDetailsWrapper = styled.section`

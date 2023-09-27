@@ -17,7 +17,6 @@ const NavBar = () => {
         </StyledTitleWrapper>
         <StyledNavSection>
           <StyledLink to="/">Home</StyledLink>
-          <div>About</div>
         </StyledNavSection>
       </StyledNav>
     </>

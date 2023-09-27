@@ -19,26 +19,40 @@ import {
 import { fetchProduct } from "../../Api/Methods";
 
 const ProductPage = () => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState();
   const { id } = useParams();
 
-  const getData = async () => {
-    let res = await fetchProduct(id);
-    setProduct(res.data);
+  const getProductData = async () => {
+    const localProducts = JSON.parse(localStorage.getItem("products"));
+    const product = localProducts.find((prod) => prod.id === parseInt(id));
+
+    if (product) {
+      setProduct(product);
+    } else {
+      let res = await fetchProduct(id);
+      setProduct(res.data);
+    }
   };
 
   useEffect(() => {
-    getData();
+    getProductData();
   }, []);
 
   return (
     <>
       <StyledProductPageSection>
-        {product.length === 0 ? (
+        {!product ? (
           <Loader />
         ) : (
           <StyledProductSection>
-            <StyledProductPageImage src={product.images[0]} alt="" />
+            <StyledProductPageImage
+              src={
+                product.images.length !== 0
+                  ? product.images[0]
+                  : product.thumbnail
+              }
+              alt=""
+            />
             <StyledProductPageProductDetails>
               <StyledProductPageTitle>{product.title}</StyledProductPageTitle>
               <StyledProductCategory>

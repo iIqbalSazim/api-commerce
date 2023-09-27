@@ -6,7 +6,8 @@ export const StyledLoader = styled.div`
   height: 80px;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
+  z-index: 99;
 
   &::after {
     content: " ";
