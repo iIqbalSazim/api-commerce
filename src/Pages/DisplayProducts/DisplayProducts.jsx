@@ -1,9 +1,12 @@
 import ProductsGrid from "./Components/ProductsGrid/ProductsGrid";
+import { StyledGridWrapper } from "./DisplayProductsStyles";
 
 const DisplayProducts = () => {
   return (
     <>
-      <ProductsGrid />
+      <StyledGridWrapper>
+        <ProductsGrid />
+      </StyledGridWrapper>
     </>
   );
 };

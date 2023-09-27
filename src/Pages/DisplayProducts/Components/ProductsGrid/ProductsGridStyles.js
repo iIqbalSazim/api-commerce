@@ -1,41 +1,45 @@
 import styled from "styled-components";
 
-export const StyledProductsGrid = styled.main`
-  display: grid;
-  margin: 6rem 7rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 5rem;
-  column-gap: 4rem;
-  justify-items: center;
-`;
-
 export const StyledProductCard = styled.div`
+  min-height: 32rem;
   height: fit-content;
-  background-color: ash;
-  width: 20rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 0.1rem;
+  background-color: rgb(255, 255, 255);
+  width: 22rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 60px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledProductImage = styled.img`
-  height: 10rem;
+  height: 15rem;
   width: inherit;
+  object-fit: scale-down;
   border-radius: inherit;
-  object-fit: cover;
+  margin: 0.5rem 0;
 `;
 
 export const StyledProductDetailsWrapper = styled.section`
   padding: 0.1rem 1.3rem;
+  flex-grow: 1;
 `;
 
 export const StyledProductTitle = styled.h1`
   font-weight: 500;
+  padding-top: 1rem;
 `;
 
 export const StyledProductBuyNowWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.5rem 2rem;
+`;
+
+export const StyledPrice = styled.h3`
+  font-weight: 500;
 `;
 
 export const StyledBuyNowButton = styled.button`
