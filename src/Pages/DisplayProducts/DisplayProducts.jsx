@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import AddProduct from "./Components/AddProduct/AddProduct";
 import ProductsGrid from "./Components/ProductsGrid/ProductsGrid";
 
-import { StyledGridWrapper } from "./DisplayProductsStyles";
 import {
   fetchAllCateogories,
   fetchAllProducts,
 } from "../DisplayProducts/Api/Methods";
+
+import { StyledGridWrapper } from "./DisplayProductsStyles";
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -43,11 +44,26 @@ const DisplayProducts = () => {
     localStorage.setItem("products", JSON.stringify([...products, newProduct]));
   };
 
+  const updateEditedProduct = (editedProduct) => {
+    const editedProductIndex = products.findIndex(
+      (product) => product.id === editedProduct.id
+    );
+    const updatedProducts = [...products];
+    updatedProducts[editedProductIndex] = editedProduct;
+
+    setProducts(updatedProducts);
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
+
   return (
     <>
       <AddProduct setNewProduct={setNewProduct} categories={categories} />
       <StyledGridWrapper>
-        <ProductsGrid products={products} />
+        <ProductsGrid
+          products={products}
+          updateEditedProduct={updateEditedProduct}
+          categories={categories}
+        />
       </StyledGridWrapper>
     </>
   );

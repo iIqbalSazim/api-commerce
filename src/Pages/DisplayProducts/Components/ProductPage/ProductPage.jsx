@@ -4,6 +4,8 @@ import { AiOutlineStar } from "react-icons/ai";
 
 import Loader from "../../../../Shared/Components/Loader/Loader";
 
+import { fetchProduct } from "../../Api/Methods";
+
 import {
   StyledProductCategory,
   StyledProductDescription,
@@ -15,8 +17,6 @@ import {
   StyledProductSection,
   StyledProductStats,
 } from "./ProductPageStyles";
-
-import { fetchProduct } from "../../Api/Methods";
 
 const ProductPage = () => {
   const [product, setProduct] = useState();
