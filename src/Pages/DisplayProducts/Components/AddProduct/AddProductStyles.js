@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 
-export const AddProductWrapper = styled.div`
+export const StyledAddProductWrapper = styled.div`
   display: flex;
   justify-content: right;
   width: 80rem;
 `;
 
-export const AddNewProductButton = styled.button`
+export const StyledAddNewProductButton = styled.button`
   margin: 3rem 0 0 0;
   border-radius: 0.2rem;
   border: 0;
@@ -19,7 +19,7 @@ export const AddNewProductButton = styled.button`
   cursor: pointer;
 `;
 
-export const FormModalOverlay = styled.div`
+export const StyledFormModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -28,9 +28,10 @@ export const FormModalOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
+  z-index: 10;
 `;
 
-export const FormModal = styled.div`
+export const StyledFormModal = styled.div`
   background-color: white;
   max-height: 40rem;
   margin-top: 3rem;
@@ -40,9 +41,10 @@ export const FormModal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-export const CloseCrossIcon = styled(AiOutlineClose)`
+export const StyledCloseCrossIcon = styled(AiOutlineClose)`
   position: absolute;
   right: 0;
   top: 0;
@@ -50,6 +52,7 @@ export const CloseCrossIcon = styled(AiOutlineClose)`
   &:hover {
     cursor: pointer;
   }
+  color: black;
 `;
 
 export const StyledTitle = styled.h1`
