@@ -43,11 +43,26 @@ const DisplayProducts = () => {
     localStorage.setItem("products", JSON.stringify([...products, newProduct]));
   };
 
+  const updateEditedProduct = (editedProduct) => {
+    const editedProductIndex = products.findIndex(
+      (product) => product.id === editedProduct.id
+    );
+    const updatedProducts = [...products];
+    updatedProducts[editedProductIndex] = editedProduct;
+
+    setProducts(updatedProducts);
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
+
   return (
     <>
       <AddProduct setNewProduct={setNewProduct} categories={categories} />
       <StyledGridWrapper>
-        <ProductsGrid products={products} />
+        <ProductsGrid
+          products={products}
+          updateEditedProduct={updateEditedProduct}
+          categories={categories}
+        />
       </StyledGridWrapper>
     </>
   );

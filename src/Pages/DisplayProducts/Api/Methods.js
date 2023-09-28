@@ -1,4 +1,8 @@
-import { getRequest, postRequest } from "../../../Config/Axios/AxiosConfig";
+import {
+  getRequest,
+  postRequest,
+  patchRequest,
+} from "../../../Config/Axios/AxiosConfig";
 
 export const fetchAllProducts = async () => {
   return await getRequest("products");
@@ -14,4 +18,8 @@ export const fetchProduct = async (id) => {
 
 export const addProduct = async (data) => {
   return await postRequest("products/add", data);
+};
+
+export const editProduct = async (data, id) => {
+  return await patchRequest(`products/${id}`, data);
 };

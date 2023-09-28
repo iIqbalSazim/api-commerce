@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
-  AddNewProductButton,
-  AddProductWrapper,
-  CloseCrossIcon,
-  FormModal,
-  FormModalOverlay,
+  StyledAddNewProductButton,
+  StyledAddProductWrapper,
+  StyledCloseCrossIcon,
+  StyledFormModal,
+  StyledFormModalOverlay,
   StyledButtonsSection,
   StyledCloseButton,
   StyledForm,
@@ -21,7 +21,7 @@ import {
 import { addProduct } from "../../Api/Methods";
 
 const AddProduct = ({ setNewProduct, categories }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const defaultValues = {
     id: "",
@@ -54,21 +54,23 @@ const AddProduct = ({ setNewProduct, categories }) => {
 
     setNewProduct(updatedId);
     alert("New Product added!");
-    setIsModalOpen(false);
+    setIsAddModalOpen(false);
 
     reset({ ...defaultValues });
   };
 
   return (
     <>
-      <AddProductWrapper>
-        <AddNewProductButton onClick={() => setIsModalOpen(!isModalOpen)}>
+      <StyledAddProductWrapper>
+        <StyledAddNewProductButton
+          onClick={() => setIsAddModalOpen(!isAddModalOpen)}
+        >
           Add New Product
-        </AddNewProductButton>
-        {isModalOpen ? (
-          <FormModalOverlay>
-            <FormModal>
-              <CloseCrossIcon onClick={() => setIsModalOpen(false)} />
+        </StyledAddNewProductButton>
+        {isAddModalOpen ? (
+          <StyledFormModalOverlay>
+            <StyledFormModal>
+              <StyledCloseCrossIcon onClick={() => setIsAddModalOpen(false)} />
               <StyledTitle>Add New Product</StyledTitle>
               <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <StyledLabel>Title</StyledLabel>
@@ -92,20 +94,20 @@ const AddProduct = ({ setNewProduct, categories }) => {
                 <StyledLabel>Price</StyledLabel>
                 <StyledInput type="number" {...register("price")} required />
                 <StyledLabel>Rating</StyledLabel>
-                <StyledInput type="number" {...register("rating")} required />
+                <StyledInput type="text" {...register("rating")} required />
                 <StyledLabel>Share a link to an Image</StyledLabel>
                 <StyledInput type="text" {...register("thumbnail")} />
                 <StyledButtonsSection>
-                  <StyledCloseButton onClick={() => setIsModalOpen(false)}>
+                  <StyledCloseButton onClick={() => setIsAddModalOpen(false)}>
                     Close Modal
                   </StyledCloseButton>
                   <StyledSubmitButton type="submit">Submit</StyledSubmitButton>
                 </StyledButtonsSection>
               </StyledForm>
-            </FormModal>
-          </FormModalOverlay>
+            </StyledFormModal>
+          </StyledFormModalOverlay>
         ) : null}
-      </AddProductWrapper>
+      </StyledAddProductWrapper>
     </>
   );
 };
