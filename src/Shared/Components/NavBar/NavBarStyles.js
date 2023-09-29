@@ -33,6 +33,7 @@ export const StyledTitle = styled.h1`
   font-weight: 600;
   font-size: 1.5rem;
   padding: 0.3rem;
+  padding-left: 1rem;
   text-decoration: none;
 `;
 

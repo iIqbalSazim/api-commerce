@@ -17,6 +17,7 @@ import {
   StyledTitle,
   StyledFormValidationError,
 } from "../AddProduct/AddProductStyles";
+
 import { editProduct } from "../../Api/Methods";
 
 const EditProduct = ({

@@ -4,7 +4,7 @@ export const StyledProductCard = styled.div`
   min-height: 32rem;
   height: fit-content;
   background-color: rgb(255, 255, 255);
-  width: 16rem;
+  width: 15.7rem;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,18 @@ export const StyledProductCard = styled.div`
       rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
   position: relative;
+
+  @media screen and (min-width: 800px) {
+    width: 14.5rem;
+  }
+
+  @media screen and (min-width: 1100px) {
+    width: 15rem;
+  }
+
+  @media screen and (min-width: 1250px) {
+    width: 16rem;
+  }
 `;
 
 export const StyledDotsButton = styled.button`
