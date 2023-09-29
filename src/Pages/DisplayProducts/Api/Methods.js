@@ -2,6 +2,7 @@ import {
   getRequest,
   postRequest,
   patchRequest,
+  deleteRequest,
 } from "../../../Config/Axios/AxiosConfig";
 
 export const fetchAllProducts = async () => {
@@ -22,4 +23,8 @@ export const addProduct = async (data) => {
 
 export const editProduct = async (data, id) => {
   return await patchRequest(`products/${id}`, data);
+};
+
+export const deleteProductApi = async (id) => {
+  return await deleteRequest(`products/${id}`);
 };

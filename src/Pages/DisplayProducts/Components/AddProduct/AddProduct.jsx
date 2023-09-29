@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { addProduct } from "../../Api/Methods";
+
 import {
   StyledAddNewProductButton,
   StyledAddProductWrapper,
@@ -17,8 +19,6 @@ import {
   StyledTextArea,
   StyledTitle,
 } from "./AddProductStyles";
-
-import { addProduct } from "../../Api/Methods";
 
 const AddProduct = ({ setNewProduct, categories }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

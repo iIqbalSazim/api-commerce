@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+
+import { editProduct } from "../../Api/Methods";
+
 import {
   StyledCloseCrossIcon,
   StyledFormModal,
@@ -13,7 +16,6 @@ import {
   StyledTextArea,
   StyledTitle,
 } from "../AddProduct/AddProductStyles";
-import { editProduct } from "../../Api/Methods";
 
 const EditProduct = ({
   product,

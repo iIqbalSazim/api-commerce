@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
 
-import AddProduct from "./Components/AddProduct/AddProduct";
-import ProductsGrid from "./Components/ProductsGrid/ProductsGrid";
-
-import { StyledGridWrapper } from "./DisplayProductsStyles";
 import {
   fetchAllCateogories,
   fetchAllProducts,
 } from "../DisplayProducts/Api/Methods";
 
+import AddProduct from "./Components/AddProduct/AddProduct";
+import ProductCard from "./Components/ProductCard/ProductCard";
+
+import { StyledGridWrapper } from "./DisplayProductsStyles";
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategoriesData();
+  }, []);
+
+  useEffect(() => {
+    if (products.length === 0) {
+      getProductsData();
+    }
+  }, [products]);
 
   const getProductsData = async () => {
     if (JSON.parse(localStorage.getItem("products"))) {
@@ -27,16 +37,6 @@ const DisplayProducts = () => {
     let res = await fetchAllCateogories();
     setCategories(res.data);
   };
-
-  useEffect(() => {
-    getCategoriesData();
-  }, []);
-
-  useEffect(() => {
-    if (products.length === 0) {
-      getProductsData();
-    }
-  }, [products]);
 
   const setNewProduct = (newProduct) => {
     setProducts([...products, newProduct]);
@@ -54,13 +54,26 @@ const DisplayProducts = () => {
     localStorage.setItem("products", JSON.stringify(updatedProducts));
   };
 
+  const deleteProduct = (productToBeDeleted) => {
+    const deletedProductIndex = products.findIndex(
+      (product) => product.id === productToBeDeleted.id
+    );
+
+    const updatedProducts = [...products];
+    updatedProducts[deletedProductIndex] = productToBeDeleted;
+
+    setProducts(updatedProducts);
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
+
   return (
     <>
       <AddProduct setNewProduct={setNewProduct} categories={categories} />
       <StyledGridWrapper>
-        <ProductsGrid
+        <ProductCard
           products={products}
           updateEditedProduct={updateEditedProduct}
+          deleteProduct={deleteProduct}
           categories={categories}
         />
       </StyledGridWrapper>
