@@ -4,6 +4,7 @@ import { useState } from "react";
 import Loader from "../../../../Shared/Components/Loader/Loader";
 
 import EditProduct from "../EditProduct/EditProduct";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
 
 import {
   StyledActionButton,
@@ -16,11 +17,17 @@ import {
   StyledProductDetailsWrapper,
   StyledProductImage,
   StyledProductTitle,
-} from "./ProductsGridStyles";
+} from "./ProductCardStyles";
 
-const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
+const ProductCard = ({
+  products,
+  updateEditedProduct,
+  categories,
+  deleteProduct,
+}) => {
   const [actionsMenuOpen, setActionsMenuOpen] = useState({});
   const [editModalOpen, setEditModalOpen] = useState({});
+  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,14 +35,25 @@ const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
     setEditModalOpen({ ...editModalOpen, [productId]: false });
   };
 
+  const closeConfirmDeleteModal = (productId) => {
+    setConfirmDeleteModalOpen({
+      ...confirmDeleteModalOpen,
+      [productId]: false,
+    });
+  };
+
   if (!products || products.length === 0) {
     return <Loader />;
   } else {
+    products = products.filter((product) => product.isDeleted !== true);
+
     return (
       <>
         {products.map((product) => {
           const isActionsMenuOpen = actionsMenuOpen[product.id] || false;
           const isEditModalOpen = editModalOpen[product.id] || false;
+          const isConfirmDeleteModalOpen =
+            confirmDeleteModalOpen[product.id] || false;
 
           return (
             <StyledProductCard key={product.id}>
@@ -49,7 +67,14 @@ const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
                   >
                     Edit product
                   </StyledActionButton>
-                  <StyledActionButton>Delete product</StyledActionButton>
+                  <StyledActionButton
+                    onClick={() => {
+                      setConfirmDeleteModalOpen({ [product.id]: true });
+                      setActionsMenuOpen({ [product.id]: false });
+                    }}
+                  >
+                    Delete product
+                  </StyledActionButton>
                 </StyledActionButtonsWrapper>
               ) : null}
               {isEditModalOpen ? (
@@ -58,6 +83,13 @@ const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
                   categories={categories}
                   updateEditedProduct={updateEditedProduct}
                   closeEditModal={closeEditModal}
+                />
+              ) : null}
+              {isConfirmDeleteModalOpen ? (
+                <DeleteProduct
+                  product={product}
+                  deleteProduct={deleteProduct}
+                  closeConfirmDeleteModal={closeConfirmDeleteModal}
                 />
               ) : null}
               <StyledDotsButton
@@ -97,4 +129,4 @@ const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
   }
 };
 
-export default ProductsGrid;
+export default ProductCard;
