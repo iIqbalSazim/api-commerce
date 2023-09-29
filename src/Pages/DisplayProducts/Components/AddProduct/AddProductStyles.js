@@ -55,12 +55,6 @@ export const StyledCloseCrossIcon = styled(AiOutlineClose)`
   color: black;
 `;
 
-export const StyledTitle = styled.h1`
-  font-size: 2rem;
-  margin: 0;
-  padding-top: 0.6rem;
-`;
-
 export const StyledForm = styled.form`
   display: grid;
   grid-template-rows: auto;
@@ -69,8 +63,14 @@ export const StyledForm = styled.form`
   font-family: inherit;
 `;
 
-export const StyledLabel = styled.label`
+export const StyledTitle = styled.h1`
+  font-size: 2rem;
+  margin: 0;
   padding-top: 1.4rem;
+`;
+
+export const StyledLabel = styled.label`
+  padding-top: 0.6rem;
 `;
 
 export const StyledInput = styled.input`
@@ -91,8 +91,8 @@ export const StyledTextArea = styled.textarea`
 export const StyledButtonsSection = styled.section`
   display: flex;
   justify-content: right;
-  gap: 2rem;
-  padding-top: 3rem;
+  gap: 1rem;
+  padding: 1.4rem 0;
 `;
 
 export const StyledFormButton = styled.button`
@@ -114,4 +114,12 @@ export const StyledCloseButton = styled(StyledFormButton)`
 export const StyledSubmitButton = styled(StyledFormButton)`
   background-color: rgb(79, 156, 189);
   color: white;
+`;
+
+export const StyledFormValidationError = styled.p`
+  padding: 0;
+  margin: 0.1rem 0;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: red;
 `;

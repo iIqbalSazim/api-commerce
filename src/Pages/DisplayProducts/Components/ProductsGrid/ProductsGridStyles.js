@@ -71,13 +71,13 @@ export const StyledProductDetailsWrapper = styled.section`
   padding: 0.1rem 1.3rem;
   flex-grow: 1;
   max-width: 16rem;
+  word-wrap: break-word;
 `;
 
 export const StyledProductTitle = styled.p`
   font-weight: 600;
   padding-top: 1rem;
   font-size: 1.1rem;
-  word-wrap: break-word;
 `;
 
 export const StyledProductBuyNowWrapper = styled.div`
@@ -89,6 +89,7 @@ export const StyledProductBuyNowWrapper = styled.div`
 
 export const StyledPrice = styled.h3`
   font-weight: 500;
+  font-size: 1rem;
 `;
 
 export const StyledBuyNowButton = styled.button`

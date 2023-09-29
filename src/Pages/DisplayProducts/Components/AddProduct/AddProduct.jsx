@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { ProductFormValidationSchema } from "../../Validation/FormValidation";
+import { addProduct } from "../../Api/Methods";
+
 import {
   StyledAddNewProductButton,
   StyledAddProductWrapper,
@@ -16,9 +19,8 @@ import {
   StyledSubmitButton,
   StyledTextArea,
   StyledTitle,
+  StyledFormValidationError,
 } from "./AddProductStyles";
-
-import { addProduct } from "../../Api/Methods";
 
 const AddProduct = ({ setNewProduct, categories }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -37,7 +39,14 @@ const AddProduct = ({ setNewProduct, categories }) => {
     images: [],
   };
 
-  const { register, handleSubmit, watch, reset, setValue } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues,
   });
 
@@ -59,6 +68,15 @@ const AddProduct = ({ setNewProduct, categories }) => {
     reset({ ...defaultValues });
   };
 
+  const {
+    validateTitle,
+    validateCategory,
+    validateDescription,
+    validateRating,
+    validatePrice,
+    validateImageLink,
+  } = ProductFormValidationSchema;
+
   return (
     <>
       <StyledAddProductWrapper>
@@ -74,9 +92,19 @@ const AddProduct = ({ setNewProduct, categories }) => {
               <StyledTitle>Add New Product</StyledTitle>
               <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <StyledLabel>Title</StyledLabel>
-                <StyledInput type="text" {...register("title")} required />
+                <StyledInput
+                  type="text"
+                  {...register("title", { ...validateTitle })}
+                />
+                {errors.title && (
+                  <StyledFormValidationError>
+                    {errors.title.message}
+                  </StyledFormValidationError>
+                )}
+
                 <StyledLabel>Category</StyledLabel>
                 <StyledSelect
+                  {...register("category", { ...validateCategory })}
                   value={categoryValue}
                   onChange={handleCategoryChange}
                 >
@@ -89,14 +117,55 @@ const AddProduct = ({ setNewProduct, categories }) => {
                     );
                   })}
                 </StyledSelect>
+                {errors.category && (
+                  <StyledFormValidationError>
+                    {errors.category.message}
+                  </StyledFormValidationError>
+                )}
+
                 <StyledLabel>Description</StyledLabel>
-                <StyledTextArea {...register("description")} required />
+                <StyledTextArea
+                  {...register("description", { ...validateDescription })}
+                />
+                {errors.description && (
+                  <StyledFormValidationError>
+                    {errors.description.message}
+                  </StyledFormValidationError>
+                )}
+
                 <StyledLabel>Price</StyledLabel>
-                <StyledInput type="number" {...register("price")} required />
-                <StyledLabel>Rating</StyledLabel>
-                <StyledInput type="text" {...register("rating")} required />
+                <StyledInput
+                  type="number"
+                  {...register("price", { ...validatePrice })}
+                />
+                {errors.price && (
+                  <StyledFormValidationError>
+                    {errors.price.message}
+                  </StyledFormValidationError>
+                )}
+
+                <StyledLabel>Rating (0 to 5)</StyledLabel>
+                <StyledInput
+                  type="text"
+                  {...register("rating", { ...validateRating })}
+                />
+                {errors.rating && (
+                  <StyledFormValidationError>
+                    {errors.rating.message}
+                  </StyledFormValidationError>
+                )}
+
                 <StyledLabel>Share a link to an Image</StyledLabel>
-                <StyledInput type="text" {...register("thumbnail")} />
+                <StyledInput
+                  type="text"
+                  {...register("thumbnail", { ...validateImageLink })}
+                />
+                {errors.thumbnail && (
+                  <StyledFormValidationError>
+                    {errors.thumbnail.message}
+                  </StyledFormValidationError>
+                )}
+
                 <StyledButtonsSection>
                   <StyledCloseButton onClick={() => setIsAddModalOpen(false)}>
                     Close Modal

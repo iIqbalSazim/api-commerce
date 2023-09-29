@@ -73,7 +73,7 @@ const ProductsGrid = ({ products, updateEditedProduct, categories }) => {
 
               <StyledProductImage
                 src={
-                  product.images
+                  product.thumbnail
                     ? product.thumbnail
                     : "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"
                 }

@@ -24,9 +24,9 @@ const ProductPage = () => {
 
   const getProductData = async () => {
     const localProducts = JSON.parse(localStorage.getItem("products"));
-    const product = localProducts.find((prod) => prod.id === parseInt(id));
 
-    if (product) {
+    if (localProducts) {
+      const product = localProducts.find((prod) => prod.id === parseInt(id));
       setProduct(product);
     } else {
       let res = await fetchProduct(id);
@@ -47,9 +47,9 @@ const ProductPage = () => {
           <StyledProductSection>
             <StyledProductPageImage
               src={
-                product.images.length !== 0
-                  ? product.images[0]
-                  : product.thumbnail
+                product.thumbnail
+                  ? product.thumbnail
+                  : "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
               }
               alt=""
             />

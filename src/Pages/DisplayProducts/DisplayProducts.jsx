@@ -24,8 +24,13 @@ const DisplayProducts = () => {
   };
 
   const getCategoriesData = async () => {
-    let res = await fetchAllCateogories();
-    setCategories(res.data);
+    if (JSON.parse(localStorage.getItem("categories"))) {
+      setCategories(JSON.parse(localStorage.getItem("categories")));
+    } else {
+      let res = await fetchAllCateogories();
+      localStorage.setItem("categories", JSON.stringify(res.data));
+      setCategories(res.data);
+    }
   };
 
   useEffect(() => {

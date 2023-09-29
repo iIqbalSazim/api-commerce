@@ -13,6 +13,7 @@ export const StyledProductSection = styled.section`
 
 export const StyledProductPageImage = styled.img`
   min-height: 20rem;
+  max-height: 30rem;
   max-width: 30rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -21,6 +22,7 @@ export const StyledProductPageImage = styled.img`
 
 export const StyledProductPageProductDetails = styled.div`
   max-width: 40rem;
+  word-wrap: break-word;
 `;
 
 export const StyledProductPageTitle = styled.h1`
